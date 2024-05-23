@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
-import { getNfcService, getBiometricsService, getDocumentScanner, getBarcodeScanner } from 'lightning/mobileCapabilities';
+import { getDocumentScanner } from 'lightning/mobileCapabilities';
 import { reduceErrors } from 'c/utils'
 import { ShowToastEvent} from 'lightning/platformShowToastEvent'
 import createLink from '@salesforce/apex/DocumentController.createLink'
@@ -12,19 +12,6 @@ export default class NfcReader extends LightningElement {
     entities = [
         'Address', 'Email', 'Phone Number', 'URL'
     ]
-
-    async verifyUser() {
-        const biometricsService = getBiometricsService();
-        if (biometricsService.isAvailable()) {
-            const options = {
-                permissionRequestBody: "Required to confirm device ownership.",
-                additionalSupportedPolicies: ['PIN_CODE']
-            }
-            return await biometricsService.checkUserIsDeviceOwner(options);
-        } else {
-            this.text = 'Problem initiating Biometrics service'
-        }
-    }
 
     handleScanGallery() {
         this.scanDocument("PHOTO_LIBRARY"); 
