@@ -43,7 +43,6 @@ export default class NfcReader extends LightningElement {
                     ...cml,
                     [cur.value]: cur.type
                 }), {})
-                const identifiedString = Object.keys(this.identified).join('');
 
                 for (const textBlock of document.blocks) {
                     loop2:
@@ -61,7 +60,7 @@ export default class NfcReader extends LightningElement {
                         // store unidentified, try not to have dupes
                         let textLineIdentified = false;
                         for (const key in this.identified) {
-                            if (textLine.text.includes(key)) {
+                            if (textLine.text.includes(key) || key.includes(textLine.text)) {
                                 textLineIdentified = true;
                             }
                         }
