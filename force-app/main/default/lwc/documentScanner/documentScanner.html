@@ -1,0 +1,30 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item>
+            <lightning-button 
+                variant="brand" label="Read" 
+                onclick={handleReadClick}
+            ></lightning-button>    
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button-group>
+                <lightning-button-icon
+                    icon-name="utility:image"
+                    variant="border-filled" 
+                    size="medium"
+                    onclick={handleScanGallery}>
+                </lightning-button-icon>
+                <lightning-button-icon
+                    icon-name="utility:photo"
+                    variant="border-filled"
+                    size="medium"
+                    onclick={handleScanCamera}>
+                </lightning-button-icon>
+            </lightning-button-group>    
+        </lightning-layout-item>
+
+    </lightning-layout>
+        <div class="slds-m-around_medium">
+        <lightning-formatted-text value={text}></lightning-formatted-text>
+    </div>
+</template>
